@@ -35,7 +35,7 @@ function Upload() {
         formData.append('file', file)
 
         try {
-            await axios.post('http://localhost:8080/api/v1/certificates/create', formData, {
+            await axios.post(`${API_URL}/api/v1/certificates/create`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
