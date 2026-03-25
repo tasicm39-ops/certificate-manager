@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Box, Button, Container, Paper, Stack, Typography } from '@mui/material'
 import Table from '../components/Table'
 import { Certificate } from '../types'
-const API_URL = process.env.REACT_APP_API_URL
+const API_URL = process.env.REACT_APP_API_URL || 'https://certificate-manager-2kda.onrender.com'
 
 function List() {
     const [certificates, setCertificates] = useState<Certificate[]>([])

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Box, Button, Container, Paper, TextField, Typography } from '@mui/material'
-const API_URL = process.env.REACT_APP_API_URL
+const API_URL = process.env.REACT_APP_API_URL || 'https://certificate-manager-2kda.onrender.com'
 
 function Upload() {
     const [name, setName] = useState('')
