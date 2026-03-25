@@ -1,3 +1,4 @@
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080'
 import {
     Checkbox,
     Link as MuiLink,
@@ -54,7 +55,7 @@ function Table({ certificates, selectedIds, onCheckboxChange }: TableProps) {
                             </TableCell>
                             <TableCell>
                                 <MuiLink
-                                    href={`http://localhost:8080/api/v1/certificates/download/${certificate.filename}`}
+                                    href={`${API_URL}/api/v1/certificates/download/${certificate.filename}`}
                                     underline="hover"
                                 >
                                     Download

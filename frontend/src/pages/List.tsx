@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Box, Button, Container, Paper, Stack, Typography } from '@mui/material'
 import Table from '../components/Table'
 import { Certificate } from '../types'
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080'
 
 function List() {
     const [certificates, setCertificates] = useState<Certificate[]>([])
@@ -12,7 +13,7 @@ function List() {
 
     const getCertificates = async () => {
         try {
-            const res = await axios.get('http://localhost:8080/api/v1/certificates/getall')
+            const res = await axios.get(`${API_URL}/api/v1/certificates/getall`)
             setCertificates(res.data || [])
         } catch (error) {
             console.error('Fetch certificates error:', error)
@@ -32,7 +33,7 @@ function List() {
         }
 
         try {
-            await axios.delete('http://localhost:8080/api/v1/certificates/delete-selected', {
+            await axios.delete(`${API_URL}/api/v1/certificates/delete-selected`, {
                 data: { ids: selectedIds },
             })
 
@@ -46,7 +47,7 @@ function List() {
     }
 
     const handleDownloadAll = () => {
-        window.open('http://localhost:8080/api/v1/certificates/download-all', '_blank')
+        window.open(`${API_URL}/api/v1/certificates/download-all`, '_blank')
     }
 
     useEffect(() => {
