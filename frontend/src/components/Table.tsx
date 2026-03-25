@@ -1,4 +1,4 @@
-const API_URL = process.env.REACT_APP_API_URL || 'https://certificate-manager-2kda.onrender.com'
+import { Certificate } from '../types'
 import {
     Checkbox,
     Link as MuiLink,
@@ -10,7 +10,7 @@ import {
     TableRow,
     Paper,
 } from '@mui/material'
-import { Certificate } from '../types'
+const API_URL = process.env.REACT_APP_API_URL || 'https://certificate-manager-2kda.onrender.com'
 
 type TableProps = {
     certificates: Certificate[]
