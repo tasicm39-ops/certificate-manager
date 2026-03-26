@@ -6,6 +6,22 @@ import { upload } from '../middleware/upload'
 
 const router = express.Router()
 const prisma = new PrismaClient()
+router.get('/', (_req: any, res: any) => {
+    res.json({ ok: true, route: 'base certificates route' })
+})
+
+router.get('/getall', async (_req: any, res: any) => {
+    try {
+        const certificates = await prisma.certificate.findMany({
+            orderBy: { id: 'desc' },
+        })
+
+        res.status(200).json(certificates)
+    } catch (error) {
+        console.error('Fetch error:', error)
+        res.status(500).json({ message: 'Server error' })
+    }
+})
 
 router.get('/', async (_req, res) => {
     res.json({ message: 'Certificates route radi 🚀' })
