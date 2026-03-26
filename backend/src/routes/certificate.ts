@@ -7,6 +7,19 @@ import { upload } from '../middleware/upload'
 const router = express.Router()
 const prisma = new PrismaClient()
 
+router.get('/', async (_req: any, res: any) => {
+    try {
+        const certificates = await prisma.certificate.findMany({
+            orderBy: { id: 'desc' },
+        })
+
+        res.status(200).json(certificates)
+    } catch (error) {
+        console.error('Fetch error:', error)
+        res.status(500).json({ message: 'Server error' })
+    }
+})
+
 router.get('/getall', async (_req: any, res: any) => {
     try {
         const certificates = await prisma.certificate.findMany({
@@ -20,9 +33,6 @@ router.get('/getall', async (_req: any, res: any) => {
     }
 })
 
-router.get('/', async (_req, res) => {
-    res.json({ message: 'Certificates route radi 🚀' })
-})
 router.post('/create', upload.single('file'), async (req: any, res: any) => {
     try {
         const { name, provider, issued_at, expires_at } = req.body
@@ -51,18 +61,6 @@ router.post('/create', upload.single('file'), async (req: any, res: any) => {
     }
 })
 
-router.get('/getall', async (_req: any, res: any) => {
-    try {
-        const certificates = await prisma.certificate.findMany({
-            orderBy: { id: 'desc' },
-        })
-
-        res.status(200).json(certificates)
-    } catch (error) {
-        console.error('Fetch error:', error)
-        res.status(500).json({ message: 'Server error' })
-    }
-})
 router.delete('/delete-selected', async (req: any, res: any) => {
     try {
         const { ids } = req.body
@@ -74,17 +72,13 @@ router.delete('/delete-selected', async (req: any, res: any) => {
 
         const certificates = await prisma.certificate.findMany({
             where: {
-                id: {
-                    in: ids,
-                },
+                id: { in: ids },
             },
         })
 
         await prisma.certificate.deleteMany({
             where: {
-                id: {
-                    in: ids,
-                },
+                id: { in: ids },
             },
         })
 
@@ -134,6 +128,7 @@ router.get('/download-all', async (_req: any, res: any) => {
         res.status(500).json({ message: 'Server error' })
     }
 })
+
 router.get('/download/:filename', (req: any, res: any) => {
     const filePath = `uploads/${req.params.filename}`
     res.download(filePath)
