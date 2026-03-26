@@ -7,6 +7,9 @@ import { upload } from '../middleware/upload'
 const router = express.Router()
 const prisma = new PrismaClient()
 
+router.get('/', async (_req, res) => {
+    res.json({ message: 'Certificates route radi 🚀' })
+})
 router.post('/create', upload.single('file'), async (req: any, res: any) => {
     try {
         const { name, provider, issued_at, expires_at } = req.body
