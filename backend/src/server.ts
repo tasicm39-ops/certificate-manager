@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
-import certificateRoutes from './routes/certificate.route'
+import certificateRoutes from './routes/certificate'
 
 const app = express()
 
