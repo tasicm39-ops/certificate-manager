@@ -9,7 +9,9 @@ app.use(cors())
 app.use(express.json())
 app.use('/uploads', express.static('uploads'))
 
+console.log('LOADED CERTIFICATE ROUTES')
 app.use('/api/v1/certificates', certificateRoutes)
+console.log('ROUTE MOUNTED')
 
 const PORT = Number(process.env.PORT) || 10000
 
