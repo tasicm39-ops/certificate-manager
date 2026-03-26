@@ -6,9 +6,6 @@ import { upload } from '../middleware/upload'
 
 const router = express.Router()
 const prisma = new PrismaClient()
-router.get('/', (_req: any, res: any) => {
-    res.json({ ok: true, route: 'base certificates route' })
-})
 
 router.get('/getall', async (_req: any, res: any) => {
     try {
