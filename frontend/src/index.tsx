@@ -5,8 +5,6 @@ import App from './App'
 import axios from 'axios'
 const API_URL = process.env.REACT_APP_API_URL || 'https://certificate-manager-2kda.onrender.com'
 
-axios.get(`${API_URL}/...`)
-
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
     <React.StrictMode>

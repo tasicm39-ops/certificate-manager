@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Box, Button, Container, Paper, Stack, Typography } from '@mui/material'
 import Table from '../components/Table'
 import { Certificate } from '../types'
+
 const API_URL = process.env.REACT_APP_API_URL || 'https://certificate-manager-2kda.onrender.com'
 
 function List() {
@@ -13,7 +14,7 @@ function List() {
 
     const getCertificates = async () => {
         try {
-            const res = await axios.get(`${API_URL}/api/v1/certificates/getall`)
+            const res = await axios.get(`${API_URL}/api/v1/certificates`)
             setCertificates(res.data || [])
         } catch (error) {
             console.error('Fetch certificates error:', error)
@@ -53,8 +54,9 @@ function List() {
     useEffect(() => {
         getCertificates()
     }, [])
+
     const filteredCertificates = certificates.filter(
-        (cert: any) =>
+        (cert: Certificate) =>
             cert.name.toLowerCase().includes(search.toLowerCase()) ||
             cert.provider.toLowerCase().includes(search.toLowerCase()),
     )
@@ -88,6 +90,7 @@ function List() {
                         onChange={(e) => setSearch(e.target.value)}
                         style={{ marginBottom: '10px', padding: '5px' }}
                     />
+
                     <Table
                         certificates={filteredCertificates}
                         selectedIds={selectedIds}
