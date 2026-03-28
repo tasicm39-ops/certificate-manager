@@ -10,7 +10,7 @@ import {
     TableRow,
     Paper,
 } from '@mui/material'
-const API_URL = process.env.REACT_APP_API_URL || 'https://certificate-manager-2kda.onrender.com'
+import { API_URL } from '../config'
 
 type TableProps = {
     certificates: Certificate[]
