@@ -35,11 +35,8 @@ function Upload() {
         formData.append('file', file)
 
         try {
-            await axios.post(`${API_URL}/api/v1/certificates/create`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            })
+            // Do not set Content-Type: axios sets multipart/form-data with the correct boundary
+            await axios.post(`${API_URL}/api/v1/certificates/create`, formData)
 
             setName('')
             setProvider('')
@@ -49,8 +46,13 @@ function Upload() {
 
             alert('Certificate uploaded successfully')
         } catch (error: any) {
+            const msg =
+                error.response?.data?.message ||
+                (typeof error.response?.data === 'string' ? error.response.data : null) ||
+                error.message ||
+                'Upload failed'
             console.error('Upload error:', error.response?.data || error.message || error)
-            alert('Upload failed')
+            alert(`Upload failed: ${msg}`)
         }
     }
 

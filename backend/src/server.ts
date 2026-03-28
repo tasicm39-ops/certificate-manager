@@ -5,7 +5,8 @@ import certificateRoutes from './routes/certificate'
 
 const app = express()
 
-app.use(cors())
+// origin: true = echo request Origin (needed for browser credentialed cross-origin; works with Vercel → Render)
+app.use(cors({ origin: true }))
 app.use(express.json())
 
 app.get('/', (_req, res) => {
