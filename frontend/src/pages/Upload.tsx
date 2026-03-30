@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
 import { Box, Button, Container, Paper, TextField, Typography } from '@mui/material'
 import { API_URL } from '../config'
 
@@ -119,10 +118,6 @@ function Upload() {
 
                     <Button type="submit" variant="contained" size="large">
                         Upload Certificate
-                    </Button>
-
-                    <Button component={Link} to="/list" variant="text">
-                        Go to List
                     </Button>
                 </Box>
             </Paper>

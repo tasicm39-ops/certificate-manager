@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
 import { Box, Button, Container, Paper, Stack, Typography } from '@mui/material'
 import Table from '../components/Table'
 import { Certificate } from '../types'
@@ -68,10 +67,6 @@ function List() {
                 </Typography>
 
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 3 }}>
-                    <Button component={Link} to="/upload" variant="outlined">
-                        Go to Upload
-                    </Button>
-
                     <Button variant="contained" color="error" onClick={handleDeleteSelected}>
                         Delete Selected
                     </Button>
